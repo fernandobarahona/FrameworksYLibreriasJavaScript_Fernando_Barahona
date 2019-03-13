@@ -12,7 +12,7 @@ $( document ).ready(function() {
         for(var jj = 1; jj <= 7 ; jj++){
             for(var ii = 0; ii < 7 ; ii++){
                 var identificadorImagen = Math.floor((Math.random() * 4) + 1);
-                $('.col-'+jj).append('<img class="imagen'+identificadorImagen+'" style="/*border:solid;*/ height: calc(680px/7);" src="/image/'+identificadorImagen+'.png">');
+                $('.col-'+jj).append('<img class="imagen'+identificadorImagen+'" style="height: calc(680px/7);" src="/image/'+identificadorImagen+'.png">');
             }
         }
     };
@@ -22,7 +22,28 @@ $( document ).ready(function() {
         detectarCadenaHorizontal();
         detectarElesVertical();
         detectarElesHorizontal();
-        eliminarCadenas();        
+        eliminarCadenas();
+        rellenarVacios();  
+    };
+    var rellenarVacios = function(){
+        $('html').delay(1200).queue(function () {
+            for(var jj = 1; jj <= 7 ; jj++){
+                if($('.col-'+jj).children().length != 7){
+                    var cantidadFaltante = 7-$('.col-'+jj).children().length;
+                    console.log(cantidadFaltante);
+                    for(var ii = 0; ii < cantidadFaltante; ii++){
+                        var identificadorImagen = Math.floor((Math.random() * 4) + 1);
+                        $('.col-'+jj).append('<img class="imagen'+identificadorImagen+'" style="height: calc(680px/7);" src="/image/'+identificadorImagen+'.png">');
+                    }
+                }
+            };
+            for(var jj = 1; jj <= 7 ; jj++){
+                for(var ii = 0; ii < 7 ; ii++){
+                    $('.col-'+jj+' img:eq('+ii+')'),$('.col-'+jj+' img:eq('+ii+')').attr('data-validar','No-repet');
+                };
+            };
+        });
+
     };
     var detectarCadenaVertical = function(){
         for(var jj = 1; jj <= 7 ; jj++){
@@ -73,17 +94,17 @@ $( document ).ready(function() {
     var eliminarCadenas = function(){
         for(var jj = 1; jj <= 7 ; jj++){
             for(var ii = 0; ii < 7 ; ii++){
-                    console.log($('.col-'+jj+' img:eq('+ii+')'),$('.col-'+jj+' img:eq('+ii+')').attr('data-validar'));
-                    if($('.col-'+jj+' img:eq('+ii+')').attr('data-validar') == 'repetido'){
-                        $('.col-'+jj+' img:eq('+ii+')').animate({backgroundColor: 'yellow'}).delay(1500).queue(function() { $(this).remove(); });
-                    }
-                };
+                console.log($('.col-'+jj+' img:eq('+ii+')'),$('.col-'+jj+' img:eq('+ii+')').attr('data-validar'));
+                if($('.col-'+jj+' img:eq('+ii+')').attr('data-validar') == 'repetido'){
+                    $('.col-'+jj+' img:eq('+ii+')').animate({backgroundColor: 'yellow'}).delay(650).queue(function() {$(this).remove();} );
+                }
             };
+        };
     };
     //funcion para empezar el juego al aplastar START
     var sensarBotonStart = function(){
         $(".btn-reinicio").click(function (e) {             
-             $(this)[0].innerHTML = 'Reiniciar';
+            $(this)[0].innerHTML = 'Reiniciar';
             e.preventDefault();
             $('#timer').timer({
                 countdown: true,
