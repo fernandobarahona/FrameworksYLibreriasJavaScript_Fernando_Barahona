@@ -83,6 +83,7 @@ body{
 .btn-reinicio:hover{
   color: #fff;
   cursor: pointer;
+
 }
 .btn-reinicio:active{
   font-size: 1em;
@@ -92,6 +93,7 @@ body{
 }
 div[class^='col']{
   width: 14.28%;
+  /*border: solid;*/
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-end;
