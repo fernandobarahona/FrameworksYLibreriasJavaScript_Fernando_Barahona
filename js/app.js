@@ -21,7 +21,8 @@ $(document).ready(function(){
                 var caramelosAAgregar = 7 - caramelosQueTieneLaColumna;
                 if (caramelosAAgregar != 0){
                     tipoDeCaramelo = Math.floor((Math.random() * 4) + 1);
-                    $(this).prepend('<img data-tipoCaramelo="imagen'+tipoDeCaramelo+'" data-validar="noRepetido" style="height: calc(680px/7);" src="/image/'+tipoDeCaramelo+'.png">');       
+                    //FAVOR ANADIR / ANTES DE img EN LA RUTA SI NO LE FUNCIONA
+                    $(this).prepend('<img data-tipoCaramelo="imagen'+tipoDeCaramelo+'" data-validar="noRepetido" style="height: calc(680px/7);" src="image/'+tipoDeCaramelo+'.png">');       
                 }
             })
             if(contadorLlenado<6){contadorLlenado++;}
